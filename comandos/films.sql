@@ -1,9 +1,13 @@
 SELECT 
   title, 
   rental_rate,
-  rental_date
-FROM film JOIN inventory JOIN rental
-ON film.film_id = inventory.film_id
--- WHERE rental_rate > 4.0
--- AND EXTRACT(YEAR FROM rental_date) = 2006;
-WHERE EXTRACT(YEAR FROM rental_date) = 2006;
+  release_year
+FROM (
+  SELECT *
+  FROM film JOIN inventory 
+  ON film.film_id = inventory.film_id
+  WHERE release_year = '2006')
+FILM JOIN rental
+ON rental.inventory_id = FILM.inventory_id
+WHERE rental_rate > 4
+GROUP BY FILM.title, rental_rate, release_year;
