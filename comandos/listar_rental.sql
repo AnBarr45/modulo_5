@@ -9,4 +9,4 @@ customer.active
 FROM rental JOIN customer 
 ON rental.customer_id = customer.customer_id
 WHERE EXTRACT(YEAR FROM rental_date) = 2005
-AND EXTRACT(MONTH FROM rental_date) = 5
+AND EXTRACT(MONTH FROM rental_date) = 5;
